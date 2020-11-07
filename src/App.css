@@ -12,7 +12,8 @@
   display: flex;
   justify-content: space-around;
   background-color: #050417;
-  padding: 35px;
+  height: 120px;
+  align-items: center;
 }
 
 .label {
@@ -25,17 +26,28 @@
   font-weight: bold;
   background-color: white;
   border-radius: 4px;
-  font-family: sans-serif;
   font-style: normal;
-  padding: 1rem ;
+  width: 400px;
+  height: 50px;
+  
+}
+.icon-bar {
+  background: linear-gradient(333.23deg, #2A2B8D -16.84%, #2B2F8F -12.31%, #559BD1 119.72%);
+  border-radius: 26px;
+  width: 70px;
+  height: 70px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
 }
 .search-button {
   background-color: #2A2B8D;
   color: white;
-  padding: 1rem ;
   font-size: 14px;
-  cursor: pointer;
   border-radius: 25px;
+  Width: 246px;
+  height: 50px;
+  border: #2A2B8D;
 }
 
 .App-logo {
@@ -46,8 +58,6 @@
   margin-bottom: 1rem;
 
 }
-
-
 .card-list {
   column-count: 3;
   padding-left: 250px;
@@ -56,10 +66,99 @@
 
 .card--image {
   flex: 100%;
-  margin-top: 1rem;
+  margin-top: 20px;
   width: 100%;
   height: auto;
  
+}
+.paging-button-next {
+
+  border: 1px solid #D5D7E5;
+  box-sizing: border-box;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 600;
+  width:93px;
+  height:42px;
+  text-align:center;
+  line-height:1.1em;
+  font-size:14px;
+  background: #FFFFFF;
+  color: #2A2B8D;
+  margin-left: 5px;
+  margin-top: 70px;
+  margin-bottom: 152px;
+}
+.paging-button-pre {
+ 
+  border: 1px solid #D5D7E5;
+  box-sizing: border-box;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 600;
+  width:93px;
+  height:42px;
+  text-align:center;
+  line-height:1.1em;
+  font-size:14px;
+  background: #FFFFFF;
+  color: #2A2B8D;
+  margin-right: 5px;
+  margin-top: 70px;
+  margin-bottom: 152px;
+}
+.paging-button-block-pre {
+  border: 1px solid #D5D7E5;
+  box-sizing: border-box;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 600;
+  width:93px;
+  height:42px;
+  text-align:center;
+  line-height:1.1em;
+  font-size:14px;
+  background: #FFFFFF;
+  color: #AAAAD1;
+  margin-right: 5px;
+  margin-top: 70px;
+  margin-bottom: 152px;
+}
+.paging-button-block-next {
+  
+  border: 1px solid #D5D7E5;
+  box-sizing: border-box;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 600;
+  width:93px;
+  height:42px;
+  text-align:center;
+  line-height:1.1em;
+  font-size:14px;
+  background: #FFFFFF;
+  color: #AAAAD1;
+  margin-left: 5px;
+  margin-top: 70px;
+  margin-bottom: 152px;
+}
+.dropdown {
+  color: #757575;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  width: 400px;
+  height: 50px;
+}
+.options{
+  color: #000000;
+  padding: 1rem ;
+  cursor: pointer;
+  display: block;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
 }
 @media  (max-width: 1100px) {
   .card-list {

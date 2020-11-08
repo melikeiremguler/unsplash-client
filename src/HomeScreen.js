@@ -1,21 +1,19 @@
 import './App.css';
 import React, { useState } from 'react'
-import { ReactComponent as Logo } from './logo.svg';
+import {
+    Link
+  } from "react-router-dom";
+
 const NodeCache = require("node-cache");
 const myCache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 const HomeScreen = () => {
     const APP_KEY = "Z3MZGBfF3D33QXRZ1lyUqyHQ6jbQv7-xuuKbgzMOqws"
-    const [keyword, setKeyword] = useState('');
+    const [keyword, setKeyword] = useState('Istanbul');
     const [lastResponse, setLastResponse] = useState([]);
     const [lastPageNo, setLastPageNo] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [collection, setCollection] = useState('');
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
-    ];
-
+   
     const getImage = async (pageNo) => {
         const url = `https://api.unsplash.com/search/photos?page=${pageNo}&query=${keyword}&client_id=${APP_KEY}`
         console.log(url)
@@ -56,6 +54,10 @@ const HomeScreen = () => {
         setLastPageNo(1);
         getImage(1);
     }
+    window.onload = function(){
+        document.getElementById('search-button').click();
+        
+      }
     return (
         <>
             <div className="form">
@@ -79,21 +81,22 @@ const HomeScreen = () => {
                     <option className="options" value="9717149">Coronavirus COVID-19 pandemic</option>
                     <option className="options" value="1131562">Insert Coin(s)</option>
                 </select>
-                <button className="search-button" type="submit" onClick={() => handelSearch()}>
+                <button id="search-button" className="search-button" type="submit" onClick={() => handelSearch()}>
                     SEARCH
                 </button>
             </div>
-
-            <div className="card-list">
-                {lastResponse.map((img) =>
-                    <img
-                        className="card--image"
-                        onClick={()=>window.location.href = 'details.html'}
-                        src={img.urls.regular}
-                    ></img>
-                )
-                }
-            </div>
+                <div className="card-list">
+                    {lastResponse.map((img) =>
+                        <Link key={img.id} to={`/photo/${img.id}`}>
+                            <img
+                                className="card--image"
+                                src={img.urls.regular}
+                            ></img>
+                        </Link>
+                    )
+                    }
+                </div>
+            
             <div className="paging" >
                 {lastPageNo > 1 ? (
                     <button className="paging-button-pre" onClick={() => handelBack()}>Previous</button>

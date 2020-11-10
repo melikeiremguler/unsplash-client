@@ -1,21 +1,27 @@
 import './App.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Link
-  } from "react-router-dom";
-
+} from "react-router-dom";
+import loadingImage from './loading.svg'
 const NodeCache = require("node-cache");
 const myCache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 const HomeScreen = () => {
     const APP_KEY = "Z3MZGBfF3D33QXRZ1lyUqyHQ6jbQv7-xuuKbgzMOqws"
     const [keyword, setKeyword] = useState('Istanbul');
     const [lastResponse, setLastResponse] = useState([]);
-    const [lastPageNo, setLastPageNo] = useState(0);
+    const [lastPageNo, setLastPageNo] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [collection, setCollection] = useState('');
-   
+    const [loading, setLoading] = useState(true);
+    console.log(loading)
+    useEffect(() => {
+        setLoading(false)
+        getImage(lastPageNo)
+
+    }, [])
     const getImage = async (pageNo) => {
-        const url = `https://api.unsplash.com/search/photos?page=${pageNo}&query=${keyword}&client_id=${APP_KEY}`
+        const url = `https://api.unsplash.com/search/photos?page=${pageNo}&query=${keyword}&client_id=${APP_KEY}&collections=${collection}`
         console.log(url)
         console.log(myCache.has(url))
         if (!myCache.has(url)) {
@@ -25,39 +31,45 @@ const HomeScreen = () => {
                     console.log(data);
                     setTotalPages(data.total_pages)
                     setLastResponse(data.results);
-                    myCache.set(url, data.results, 600);
+                    setLoading(true);
+                    myCache.set(url, data, 600);
                 })
                 .catch(error => {
                     // handle the error
                 });
         } else {
+            setLoading(true);
             console.log(myCache.get(url))
-            setLastResponse(myCache.get(url));
+            setLastResponse(myCache.get(url).results);
+            setTotalPages(myCache.get(url).total_pages)
+
         }
         console.log(keyword)
+
     }
     const handelChange = (e) => {
         setKeyword(e.target.value);
         console.log(e.target.value)
     }
     const handelBack = () => {
+        setLoading(false);
         console.log('back', lastPageNo)
         setLastPageNo(lastPageNo - 1);
         getImage(lastPageNo - 1);
     }
     const handelNext = () => {
+        setLoading(false);
         setLastPageNo(lastPageNo + 1);
         getImage(lastPageNo + 1);
         console.log(totalPages)
     }
+    console.log(loading)
     const handelSearch = () => {
+        setLoading(false);
         setLastPageNo(1);
         getImage(1);
     }
-    window.onload = function(){
-        document.getElementById('search-button').click();
-        
-      }
+
     return (
         <>
             <div className="form">
@@ -85,6 +97,7 @@ const HomeScreen = () => {
                     SEARCH
                 </button>
             </div>
+            {loading ? (
                 <div className="card-list">
                     {lastResponse.map((img) =>
                         <Link key={img.id} to={`/photo/${img.id}`}>
@@ -95,8 +108,12 @@ const HomeScreen = () => {
                         </Link>
                     )
                     }
+                </div>) :
+                <div className="loading">
+                    <img src={loadingImage} alt="loading..." />
                 </div>
-            
+            }
+
             <div className="paging" >
                 {lastPageNo > 1 ? (
                     <button className="paging-button-pre" onClick={() => handelBack()}>Previous</button>
@@ -105,6 +122,7 @@ const HomeScreen = () => {
                     <button className="paging-button-next" onClick={() => handelNext()}>Next</button>
                 ) : <button className="paging-button-block-next">Next</button>}
             </div>
+
         </>
 
     );

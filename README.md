@@ -47,8 +47,3 @@ You will also see any lint errors in the console.
  ## This project is mobile-friendly
 
  With @media in app.css, the size of the components in the project is arranged on small screens.
-
- ## Use of Linter
-
- `ESLint-plugin-React` was used in the project. https://www.npmjs.com/package/eslint-plugin-react
- It has been used for a static code analysis used to mark programming errors, formal errors, and suspicious structures.

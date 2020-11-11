@@ -50,5 +50,5 @@ You will also see any lint errors in the console.
 
  ## Use of Linter
 
- `ESLint-plugin-React` was used in the project. 
- It has been used for a static code analysis used to mark programming errors, errors, formal errors, and suspicious structures.
+ `ESLint-plugin-React` was used in the project. https://www.npmjs.com/package/eslint-plugin-react
+ It has been used for a static code analysis used to mark programming errors, formal errors, and suspicious structures.

@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
+import config from './config'
 
 const DetailScreen = ({ match }) => {
     const [item, setItem] = useState([]);
     const [image, setImage] = useState('');
-    const [profilImage, setProfilImage] = useState('');
-    const APP_KEY = "Z3MZGBfF3D33QXRZ1lyUqyHQ6jbQv7-xuuKbgzMOqws"
+    const [profileImage, setProfileImage] = useState('');
+
     useEffect(() => {
         fetchItems();
     }, [match])
     const fetchItems = async () => {
 
-        await fetch(`https://api.unsplash.com/photos/${match.params.id}?client_id=${APP_KEY}`)
+        await fetch(`https://api.unsplash.com/photos/${match.params.id}?client_id=${config.CLIENT_ID}`)
             .then(response => response.json())
             .then(data => {
                 setImage(data.urls.regular);
-                setProfilImage(data.user.profile_image.large)
+                setProfileImage(data.user.profile_image.large)
                 setItem(data)
             })
             .catch(error => {
@@ -33,7 +34,7 @@ const DetailScreen = ({ match }) => {
                 <div className="profile-image-bar">
                     <img
                         className="profile-image"
-                        src={profilImage}
+                        src={profileImage}
                     ></img>
                 </div>
             </div>
@@ -50,7 +51,7 @@ const DetailScreen = ({ match }) => {
             </div>
             <div className="click-unsplash-bar">
                 <a className="click-unsplash" href={`https://unsplash.com/photos/${item.id}`} target="_blank" rel="noopener noreferrer">
-                    Unsplash Detail Page Go
+                Go To Unsplash Detail 
             </a>
             </div>
         </div>

@@ -4,8 +4,6 @@
 
 .container {
   margin: 0 auto;
-
-
 }
 
 .form {
@@ -26,7 +24,6 @@
   left: 0;
   top: 400px;
   right: 0;
- 
 }
 .label {
   font-size: 3rem;
@@ -51,7 +48,6 @@
   align-items: center;
   display: flex;
   justify-content: space-around;
- 
 }
 .text{
   text-transform: uppercase;
@@ -146,7 +142,6 @@
   margin-top: 20px;
   width: 100%;
   height: auto;
- 
 }
 .form-detail{
 
@@ -173,7 +168,6 @@
   margin-bottom: 152px;
 }
 .paging-button-pre {
- 
   border: 1px solid #D5D7E5;
   box-sizing: border-box;
   border-radius: 2px;
@@ -271,7 +265,6 @@
   .dropdown {
     margin-bottom: 0;
   }
-   
 }
 
 @media only screen and (max-width: 750px) {
@@ -430,8 +423,8 @@
     width: 50px;
     height: 50px;
     border-radius: 10px;
-   top:15px;
-   left:15px;
+    top:15px;
+    left:15px;
   }
   .form{
     height: 150px;

@@ -13,7 +13,6 @@ const DetailScreen = ({ match }) => {
         await fetch(`https://api.unsplash.com/photos/${match.params.id}?client_id=${APP_KEY}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 setImage(data.urls.regular);
                 setProfilImage(data.user.profile_image.large)
                 setItem(data)

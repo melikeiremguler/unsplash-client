@@ -14,7 +14,6 @@ const HomeScreen = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [collection, setCollection] = useState('');
     const [loading, setLoading] = useState(true);
-    console.log(loading)
     useEffect(() => {
         setLoading(false)
         getImage(lastPageNo)
@@ -22,13 +21,10 @@ const HomeScreen = () => {
     }, [])
     const getImage = async (pageNo) => {
         const url = `https://api.unsplash.com/search/photos?page=${pageNo}&query=${keyword}&client_id=${APP_KEY}&collections=${collection}`
-        console.log(url)
-        console.log(myCache.has(url))
         if (!myCache.has(url)) {
             await fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     setTotalPages(data.total_pages)
                     setLastResponse(data.results);
                     setLoading(true);
@@ -39,21 +35,16 @@ const HomeScreen = () => {
                 });
         } else {
             setLoading(true);
-            console.log(myCache.get(url))
             setLastResponse(myCache.get(url).results);
             setTotalPages(myCache.get(url).total_pages)
 
         }
-        console.log(keyword)
-
     }
     const handelChange = (e) => {
         setKeyword(e.target.value);
-        console.log(e.target.value)
     }
     const handelBack = () => {
         setLoading(false);
-        console.log('back', lastPageNo)
         setLastPageNo(lastPageNo - 1);
         getImage(lastPageNo - 1);
     }
@@ -63,7 +54,6 @@ const HomeScreen = () => {
         getImage(lastPageNo + 1);
         console.log(totalPages)
     }
-    console.log(loading)
     const handelSearch = () => {
         setLoading(false);
         setLastPageNo(1);
@@ -85,13 +75,12 @@ const HomeScreen = () => {
                 >
                     <option value="" disabled selected>Collections</option>
                     <option className="options" value="11987944">The Civil Rights Movement in Color</option>
-                    <option className="options" value="9568384">patient</option>
+                    <option className="options" value="9568384">Patient</option>
                     <option className="options" value="9248817">Watercolour</option>
                     <option className="options" value="9042806">Festive moments with friends</option>
                     <option className="options" value="9042799">Festive with blank space</option>
                     <option className="options" value="3493607">Iranians</option>
                     <option className="options" value="9717149">Coronavirus COVID-19 pandemic</option>
-                    <option className="options" value="1131562">Insert Coin(s)</option>
                 </select>
                 <button id="search-button" className="search-button" type="submit" onClick={() => handelSearch()}>
                     SEARCH
@@ -100,7 +89,7 @@ const HomeScreen = () => {
             {loading ? (
                 <div className="card-list">
                     {lastResponse.map((img) =>
-                        <Link key={img.id} to={`/photo/${img.id}`}>
+                        <Link key={img.id} to={`/photo/${img.id}`} target="_blank">
                             <img
                                 className="card--image"
                                 src={img.urls.regular}

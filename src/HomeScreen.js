@@ -60,7 +60,7 @@ const HomeScreen = () => {
                     value={collection}
                     onChange={e => setCollection(e.target.value)}
                 >
-                    <option value="" >Collections</option>
+                    <option className="default-options" value=""> No Collections</option>
                     <option className="options" value="11987944">The Civil Rights Movement in Color</option>
                     <option className="options" value="9568384">Patient</option>
                     <option className="options" value="9248817">Watercolour</option>

@@ -43,7 +43,10 @@ const HomeScreen = () => {
 
         }
     }
-
+    const handleSearch = () => {
+        setLastPageNo(1)
+        getImage(1);
+    }
     return (
         <>
             <div className="form">
@@ -66,7 +69,7 @@ const HomeScreen = () => {
                     <option className="options" value="3493607">Iranians</option>
                     <option className="options" value="9717149">Coronavirus COVID-19 pandemic</option>
                 </select>
-                <button id="search-button" className="search-button" type="submit" onClick={() => setLastPageNo(1)}>
+                <button id="search-button" className="search-button" type="submit" onClick={() => handleSearch()}>
                     SEARCH
                 </button>
             </div>

@@ -16,7 +16,7 @@ You will also see any lint errors in the console.
 
  ### You can access the working version of the project from the api below.
  https://unsplash-client.herokuapp.com/
- When the project was first opened, shows the search results for the Istanbul keyword.
+ When the search page loaded, it shows the search results for the keyword "Istanbul".
 
  # Project Important Points
 
@@ -47,3 +47,8 @@ You will also see any lint errors in the console.
  ## This project is mobile-friendly
 
  With @media in app.css, the size of the components in the project is arranged on small screens.
+
+ ## Use of Linter
+
+ `ESLint-plugin-React` was used in the project. 
+ It has been used for a static code analysis used to mark programming errors, errors, formal errors, and suspicious structures.
